@@ -19,12 +19,12 @@ const tabs = [
 ]
 
 const memories = [
-  { id: 1, gradient: "from-pink-300 to-rose-400" },
-  { id: 2, gradient: "from-rose-300 to-pink-400" },
-  { id: 3, gradient: "from-pink-400 to-rose-300" },
-  { id: 4, gradient: "from-rose-400 to-pink-300" },
-  { id: 5, gradient: "from-pink-300 to-rose-500" },
-  { id: 6, gradient: "from-rose-300 to-pink-500" },
+  { id: 1, gradient: "from-pink-300 to-rose-400", image: "/memories/memory1.jpeg" },
+  { id: 2, gradient: "from-rose-300 to-pink-400", image: "/memories/memory2.jpeg" },
+  { id: 3, gradient: "from-pink-400 to-rose-300", image: "/memories/memory3.jpeg" },
+  { id: 4, gradient: "from-rose-400 to-pink-300", image: "/memories/memory4.jpeg" },
+  { id: 5, gradient: "from-pink-300 to-rose-500", image: "/memories/memory5.jpeg" },
+  { id: 6, gradient: "from-rose-300 to-pink-500", image: "/memories/memory6.jpeg" },
 ]
 
 export function MainContent() {
@@ -272,21 +272,7 @@ function MemoriesSection() {
           <CarouselContent className="-ml-2">
             {memories.map((memory, i) => (
               <CarouselItem key={memory.id} className="pl-2 basis-[85%]">
-                <motion.div
-                  className={cn(
-                    "aspect-[4/3] rounded-2xl bg-gradient-to-br overflow-hidden cursor-pointer relative group shadow-lg",
-                    memory.gradient
-                  )}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-foreground/5 group-hover:bg-foreground/10 transition-colors">
-                    <Camera className="w-10 h-10 text-card/80 mb-2" />
-                    <span className="text-card/80 text-sm font-medium">Foto {memory.id}</span>
-                  </div>
-                </motion.div>
+               <img  src={memory.image || "/placeholder.svg"} alt={`Foto ${memory.id}`} className="w-full h-full object-cover"/>
               </CarouselItem>
             ))}
           </CarouselContent>

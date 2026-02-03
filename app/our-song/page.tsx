@@ -1,9 +1,11 @@
 "use client"
 
+import React from "react"
+
 import { motion } from "framer-motion"
 import { Heart, Music, ArrowLeft, Play, Pause } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 
 const songInfo = {
   title: "Just the Way You Are",
@@ -40,9 +42,61 @@ const lyrics = [
 
 export default function OurSongPage() {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  // Path ke file MP3 - taruh file di /public/music/song.mp3
+  const audioSrc = "/music/just-the-way-you-are.mp3"
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    const updateTime = () => setCurrentTime(audio.currentTime)
+    const updateDuration = () => setDuration(audio.duration)
+    const handleEnded = () => setIsPlaying(false)
+
+    audio.addEventListener("timeupdate", updateTime)
+    audio.addEventListener("loadedmetadata", updateDuration)
+    audio.addEventListener("ended", handleEnded)
+
+    return () => {
+      audio.removeEventListener("timeupdate", updateTime)
+      audio.removeEventListener("loadedmetadata", updateDuration)
+      audio.removeEventListener("ended", handleEnded)
+    }
+  }, [])
+
+  const togglePlay = () => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    if (isPlaying) {
+      audio.pause()
+    } else {
+      audio.play()
+    }
+    setIsPlaying(!isPlaying)
+  }
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`
+  }
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const audio = audioRef.current
+    if (!audio) return
+    audio.currentTime = Number(e.target.value)
+    setCurrentTime(Number(e.target.value))
+  }
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Audio Element */}
+      <audio ref={audioRef} src={audioSrc} preload="metadata" />
       {/* Floating music notes */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {[...Array(8)].map((_, i) => (
@@ -101,30 +155,36 @@ export default function OurSongPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-primary/40 shadow-2xl flex items-center justify-center relative overflow-hidden">
-            {/* Animated rings */}
+          <div className="aspect-square rounded-3xl shadow-2xl relative overflow-hidden">
+            {/* Album Cover Image - ganti path sesuai file kamu */}
+            <img 
+              src="/images/album-cover.jpeg" 
+              alt="Album Cover"
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            
+            {/* Animated rings saat playing */}
             {isPlaying && (
               <>
                 <motion.div
-                  className="absolute w-full h-full rounded-full border-2 border-primary/20"
-                  animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute w-full h-full rounded-full border-2 border-primary/20"
-                  animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  className="absolute inset-0 rounded-3xl border-4 border-primary/30"
+                  animate={{ scale: [1, 1.05], opacity: [0.5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
                 />
               </>
             )}
             
+            {/* Vinyl disc di tengah */}
             <motion.div
-              className="w-32 h-32 rounded-full bg-card shadow-lg flex items-center justify-center"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-black/80 shadow-lg flex items-center justify-center"
               animate={isPlaying ? { rotate: 360 } : {}}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             >
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Music className="w-6 h-6 text-primary-foreground" />
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <Music className="w-4 h-4 text-primary-foreground" />
               </div>
             </motion.div>
           </div>
@@ -134,7 +194,7 @@ export default function OurSongPage() {
             className="absolute bottom-4 right-4 w-16 h-16 rounded-full bg-primary shadow-lg flex items-center justify-center text-primary-foreground"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setIsPlaying(!isPlaying)}
+            onClick={togglePlay}
           >
             {isPlaying ? (
               <Pause className="w-7 h-7" />
@@ -142,6 +202,27 @@ export default function OurSongPage() {
               <Play className="w-7 h-7 ml-1" />
             )}
           </motion.button>
+        </motion.div>
+
+        {/* Audio Progress Bar */}
+        <motion.div
+          className="mb-6 px-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25 }}
+        >
+          <input
+            type="range"
+            min={0}
+            max={duration || 100}
+            value={currentTime}
+            onChange={handleSeek}
+            className="w-full h-2 bg-muted rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
+          />
+          <div className="flex justify-between text-xs text-muted-foreground mt-1">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
+          </div>
         </motion.div>
 
         {/* Song Info */}
