@@ -9,7 +9,7 @@ interface LoginScreenProps {
   onSuccess: () => void
 }
 
-const PASSWORD = "1907"
+const PASSWORD = "0402"
 
 export function LoginScreen({ onSuccess }: LoginScreenProps) {
   const [pin, setPin] = useState("")

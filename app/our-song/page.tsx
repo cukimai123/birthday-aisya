@@ -21,10 +21,10 @@ const meaningLines = [
   { line: "Setiap detail dari dirinya adalah keajaiban", type: "verse" },
   { line: "", type: "space" },
   { line: "Kenapa Lagu Ini Spesial", type: "label" },
-  { line: "Saat lagu ini diputar, aku selalu teringat padamu", type: "verse" },
-  { line: "Karena kamu memang sempurna apa adanya", type: "verse" },
-  { line: "Tidak perlu mengubah apapun dari dirimu", type: "verse" },
-  { line: "Kamu amazing, just the way you are", type: "verse" },
+  { line: "Saat lagu ini diputar, aku selalu teringat aisya", type: "verse" },
+  { line: "Karena aisya memang sempurna apa adanya", type: "verse" },
+  { line: "Tidak perlu mengubah apapun dari aisya", type: "verse" },
+  { line: "Aisya amazing, just the way you are", type: "verse" },
 ]
 
 const lyrics = [
@@ -34,10 +34,10 @@ const lyrics = [
   { line: "Setiap detail dari dirinya adalah keajaiban", type: "verse" },
   { line: "", type: "space" },
   { line: "Kenapa Lagu Ini Spesial", type: "label" },
-  { line: "Saat lagu ini diputar, aku selalu teringat padamu", type: "verse" },
-  { line: "Karena kamu memang sempurna apa adanya", type: "verse" },
-  { line: "Tidak perlu mengubah apapun dari dirimu", type: "verse" },
-  { line: "Kamu amazing, just the way you are", type: "verse" },
+  { line: "Saat lagu ini diputar, abang selalu teringat aisya", type: "verse" },
+  { line: "Karena aisya memang sempurna apa adanya", type: "verse" },
+  { line: "Tidak perlu mengubah apapun dari aisya", type: "verse" },
+  { line: "Aisya amazing, just the way you are", type: "verse" },
 ]
 
 export default function OurSongPage() {
@@ -140,8 +140,8 @@ export default function OurSongPage() {
             </motion.button>
           </Link>
           <div>
-            <h1 className="font-semibold text-foreground">Lagu Kita</h1>
-            <p className="text-sm text-muted-foreground">Yang mempertemukan kita</p>
+            <h1 className="font-semibold text-foreground">Lagu untuk Aisya</h1>
+            <p className="text-sm text-muted-foreground">Yang membuat abang selalu ingat aisyaa cintaku </p>
           </div>
         </div>
       </motion.header>
@@ -297,8 +297,8 @@ export default function OurSongPage() {
             &ldquo;When I see your face, there&apos;s not a thing that I would change, cause you&apos;re amazing, just the way you are.&rdquo;
           </p>
           <p className="text-muted-foreground leading-relaxed text-balance mt-3">
-            Kamu tidak perlu berubah untuk siapapun. Kamu sudah sempurna dengan semua kekurangan dan kelebihanmu. 
-            Selamat ulang tahun, semoga di usia yang baru ini kamu semakin mencintai dirimu sendiri!
+            Aisya engga perlu berubah untuk siapapun. Aisya udah sempurna dengan semua kekurangan dan kelebihan Aisya sayangg. 
+            Selamat ulang tahun cintakuu maniskuuu, semoga di usia yang baru ini Aisya makin mencintai diri Aisya sendiri!
           </p>
         </motion.div>
 

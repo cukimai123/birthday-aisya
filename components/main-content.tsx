@@ -352,15 +352,15 @@ function WishesSection() {
 
       <div className="bg-secondary/50 rounded-2xl p-5 border border-border/50">
         <p className="text-card-foreground leading-relaxed text-balance">
-          Semoga di usia ini makin banyak pintu baik terbuka dan langkah dimudahkan. 
-          Tetap jadi versi terbaik dirimu, selalu bahagia dan sehat. 
+          Semoga di usia 19 ini aisya makin banyak rezekinyaa, keterima dijurusan yang aisyaa pilihh, sehatt terusss, sayangg abangg teruss, gaa kerass kepalaa lagiii, makin rajin sholatnyaa, dan lain lain yangg gabisa abang tulis disiniii heheee..... 
+          Tetap jadi versi terbaik diri aisyaa sendiri yaa sayangkuu, selalu bahagia dan sehat mbuuuquuhhh. 
         </p>
       </div>
 
       <div className="bg-primary/10 rounded-2xl p-5 border border-primary/20">
         <p className="text-card-foreground leading-relaxed text-balance">
-          Terima kasih sudah hadir dan menjadi bagian dari hidup ini. 
-          Semoga semua mimpi dan harapanmu terwujud. Selamat ulang tahun!
+          Terima kacihhhh sayanggg udahh  hadir lagiii dan jadiii bagiannn darii hidup abid yang kesepian iniiiii. 
+          Semoga semua mimpiii aisyaaa dan harapan aisyaaa terwujud SEMUAANYAA!!!. Selamat ulang tahunnnn MBUUUUUU!!!!!
         </p>
       </div>
 
