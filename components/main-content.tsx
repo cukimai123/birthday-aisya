@@ -125,7 +125,7 @@ export function MainContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            Selamat ulang tahun ke-19! Semoga sehat selalu, lancar urusan, dan makin banyak momen bahagia.
+            Selamat ulang tahun ke-19 sayanggg!!! Semoga sehat selalu, lancar rezekiii, dan makin banyak momen bahagia barengg.
           </motion.p>
         </div>
 
@@ -201,16 +201,15 @@ function ProfileSection() {
         className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 border-4 border-card shadow-lg"
         whileHover={{ scale: 1.05 }}
       >
-        <User className="w-10 h-10 text-primary" />
+       <img src="/images/profile.jpeg" alt="Profile" className="w-full h-full object-cover" />
       </motion.div>
 
       <h3 className="text-xl font-semibold text-card-foreground mb-2">
-        Happy Nineteen
+        Aisya Fatma Dianty Putri
       </h3>
       
       <p className="text-muted-foreground leading-relaxed text-balance">
-        Pribadi yang hangat dan kuat. Semoga tahun ini penuh cerita baik, 
-        cita-cita tercapai, dan selalu dikelilingi orang-orang yang menyayangi.
+        Aisya orangnya  mandiri, kuat, keras kepala sedikittt, cengeng kalo soal drakor, jajanann favoritnya sempol, suka silent treatment, suka kevin lius boong, suka mandi hujan sampe sakit, dann buanyakkkk lagii masihhh......
       </p>
 
       <div className="mt-6 flex justify-center gap-4">
@@ -324,7 +323,7 @@ function MemoriesSection() {
           whileTap={{ scale: 0.98 }}
         >
           <Music className="w-5 h-5" />
-          <span>Lagu yang Mempertemukan Kita</span>
+          <span>Lagu untuk Kamu</span>
         </motion.button>
       </Link>
     </motion.div>
